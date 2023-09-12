@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root{
+    --centrar: 0 auto;
+    --colorPrincipal: #69D4B6;
+    --colorFondo: #E7F8F1;
+    --colorTitulos: #51ADCF;
+    --colorSubTitulos: #0278AE;
+    --letras: #000000;
+    --tamTitulos: 2.5rem;
+    --tamSubTitulos: 25px;
+    --tamTexto: 20px;
+    --fuentePrincipal: Montserrat;
+    --blanco: #fffff;
+}
+
+.acercade{
+}
+
+.titulo{
+    font-size: var(--tamTitulos);
+    text-align: center;
+    color: var(--colorSubTitulos);
+    padding-top: 7rem;
+    font-family: var(--fuentePrincipal);
+    text-shadow: 3px 3px 3px #a3e1f4, 2px 2px 1px #000000;
+}
+
+.subtirulo{
+    font-family: var(--fuentePrincipal);
+    font-size: var(--tamSubTitulos);
+    text-align: center;
+    padding-top: 1rem ;
+    margin-bottom: -1rem;
+    font-weight: bold;
+}
+
+.imagenes {
+    width: 100px;
+    height: 100px;
+    border-radius: 10%;
+}
+
+.ajustar {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: 1rem auto;
+    padding: 0 .5rem;
+    flex: 1 1 0;
+    align-items: center;
+}
+
+.texto{
+    font-size: var(--tamTexto);
+    margin: 2rem;
+    font-family: var(--fuentePrincipal);
+}
+
+.contenedor{
+    background: rgba(15, 106, 180, 0.4);
+    width: 80%;
+    margin: 2rem auto;
+    border-radius: 30px;
+}
+
+body{
+    background: var(--blanco);
+}

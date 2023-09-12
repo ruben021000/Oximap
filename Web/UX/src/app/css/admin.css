@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root{
+    --centrar: 0 auto;
+    --colorPrincipal: #69D4B6;
+    --colorFondo: #E7F8F1;
+    --colorTitulos: #51ADCF;
+    --colorSubTitulos: #0278AE;
+    --letras: #000000;
+    --tamTitulos: 2.5rem;
+    --tamSubTitulos: 25px;
+    --tamTexto: 20px;
+    --fuentePrincipal: Montserrat;
+    --blanco: #fffff;
+}
+
+.decoracion{
+    padding-top: 7rem;
+}
+
+.contenedorAdmin{
+    text-align: center;
+    margin: auto auto;
+}
+
+.nombreAdministracion{
+    font-size: var(--tamTitulos);
+    text-align: center;
+    color: var(--colorSubTitulos);
+    font-family: var(--fuentePrincipal);
+    text-shadow: 3px 3px 3px #a3e1f4, 2px 2px 1px #000000;
+}
+
+.subtitulo{
+    font-size: var(--tamSubTitulos);
+    text-align: center;
+    color: var(--colorSubTitulos);
+    font-family: var(--fuentePrincipal);
+    margin-top: 2em;
+}
+
+.tablaBD{
+    width: 90%;
+    margin: auto auto;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+.tablaBD td{
+    width: 15em;
+}
+
+.tablaBD th{
+    width: 18em;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+td, th{
+    font-family: var(--fuentePrincipal);
+    text-align: center;
+    padding: 1rem;
+    font-size: 18px;
+}
+
+tr:nth-of-type(1) > th{
+    font-size: 23px;
+}
+
+.btn_tabla{
+    cursor: pointer;
+    color: white;
+    width: auto;
+    height: auto;
+    font-family: var(--fuentePrincipal);
+    padding: 0.5rem;
+    border-radius: 12px;
+    background-color: var(--colorTitulos);
+    border-color: 1px solid var(--colorSubTitulos);
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-right: 1rem;
+    margin-left: 0.5rem;
+}
+
+.generar{
+    padding: 1rem;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    width: auto;
+    height: auto;
+    font-family: var(--fuentePrincipal);
+    border-radius: 12px;
+    background-color: var(--colorTitulos);
+    border-color: 1px solid var(--colorSubTitulos);
+    font-weight: bold;
+    margin-top: 1em;
+
+}
+
+
+.btn_tabla:hover{
+    background: rgba(15, 106, 180, 0.4);
+}
+.generar:hover{
+    background: rgba(15, 106, 180, 0.4);
+}
+
+.escribir{
+    padding: 0.5rem;
+    width: 15%;
+    border-color: 1px solid var(--colorSubTitulos);
+}

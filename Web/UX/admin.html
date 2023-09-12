@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMINISTRADOR</title>
+    <link rel="stylesheet" type="text/css" href="src/app/css/admin.css">
+    <link rel="stylesheet" type="text/css" href="src/app/css/menu.css">
+
+    <script type="module">
+        import logicaFake from "./JS/Logica_fake.js"
+        
+        document.onreadystatechange = async function() {
+            if( document.readyState === "complete"){
+                let logica = new logicaFake()
+                
+                //Asignando la funcionalidad al boton de buscar muestra
+                
+                let btn_tabla = document.getElementById("btn_tabla")
+                    btn_tabla.addEventListener("click" , async function(){
+
+                        //borrar la tabla anterior
+                        let tabla = document.getElementById("tablaBD")
+                        tabla.innerHTML = ""
+                        var res = await logica.buscar_micro();
+
+                    })
+
+                document.getElementById("btn_tabla").addEventListener("click",function(){
+                this.value="ACTUALIZAR TABLA";
+                 });
+
+                let btn_filtrar = document.getElementById("filtro_disponibilidad")
+                    btn_filtrar.addEventListener("click" , async function(){
+   
+                        let tabla = document.getElementById("tablaBD")
+                        tabla.innerHTML = ""
+                        logica.filtrar_tabla()
+
+                    })
+
+                    let lookcorreo = document.getElementById("buscarcorreo")
+                    lookcorreo.addEventListener("click" , async function(){
+                        let correo_buscar = document.getElementById("Buscarcorreo").value
+                        console.log(correo_buscar)
+                        let tabla = document.getElementById("tablaBD")
+                        tabla.innerHTML = ""
+                        logica.filtrar_tabla_correo(correo_buscar)
+
+                    })
+
+                    let lookid = document.getElementById("buscarid")
+                    lookid.addEventListener("click" , async function(){
+
+                        let id_buscar = document.getElementById("Buscarid").value
+                        console.log(id_buscar)
+                        let tabla = document.getElementById("tablaBD")
+                        tabla.innerHTML = ""
+                        logica.filtrar_tabla_id(id_buscar)
+
+                    })
+            }
+
+        }
+
+    </script>
+
+
+</head>
+
+<body>
+<!--------------------------------- ENCABEZADO ------------------------------------->
+<header>
+    <section class="wrapper">
+        <nav>
+            <li><a href="./usuario.html"><img src="./src/app/img/logo_con_nombre.png" class="logo"></a></li>
+            <li><a href="./index.html"><img src="./src/app/img/cerrar-sesionblanco.png" class="loginuser"></a></li>
+        </nav>
+    </section>
+
+</header>
+<!---------------------------------------------------------------------------------->
+
+<!--------------------------------- USUARIO ---------------------------------------->
+<div class="decoracion">
+    <div class="contenedorAdmin">
+        <h2 id="nombreAdministracion" class="nombreAdministracion">AYUNTAMIENTO DE VALENCIA</h2>
+        <h4 class="subtitulo">Tabla de sensores</h4>
+
+        <input type="submit" class="generar" id="btn_tabla" value="GENERAR TABLA">
+        <div class="filtro">
+
+            <input class="escribir"  type="search" id="Buscarid" placeholder="Introduce el ID">
+            <input class="btn_tabla espacio" style="margin-right: 3rem" id="buscarid" type="submit" value="Buscar ID">
+            <input class="escribir" type="search" id="Buscarcorreo" placeholder="Introduce el correo a buscar">
+            <input class="btn_tabla" id="buscarcorreo" type="submit" value="Buscar correo">
+
+
+            <input class="btn_tabla" style="margin-left: 2rem" id="filtro_disponibilidad" type="submit" value="Mostrar No Disponibles">
+        </div>
+        <div class="tablaBD">
+            <table border="1" >
+                <tbody>
+                    <th>ID SENSOR</th>
+                    <th>CORREO USUARIO</th>
+                    <th>ÚLTIMA VEZ ACTIVO</th>
+                    <th>DISPONIBILIDAD</th>
+                </tbody>
+            </table> 
+            <table border="1" class="tablaBD" id="tablaBD"></table>
+        </div>
+    </div>
+</div>
+
+<!---------------------------------------------------------------------------------->
+</body>
+</html>

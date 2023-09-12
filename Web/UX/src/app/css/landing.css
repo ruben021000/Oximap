@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root{
+    --centrar: 0 auto;
+    --colorPrincipal: #69D4B6;
+    --colorFondo: #fffff;
+    --colorTitulos: #51ADCF;
+    --colorSubTitulos: #0278AE;
+    --letras: #000000;
+    --tamTitulos: 2.5rem;
+    --tamSubTitulos: 25px;
+    --tamTexto: 20px;
+    --fuentePrincipal: Montserrat;
+    --GirarPortada: skewY(3deg);
+    --GiraNo: skewY(-3deg);
+    --colorTransparente:rgba(15, 106, 180, 0.4);
+}
+
+/*Sobre el Proyecto*/
+.proyecto{
+    padding-top: 80px;
+}
+
+.titulo{
+    padding-top:4rem;
+    font-size: var(--tamTitulos);
+    text-align: center;
+    color: var(--colorSubTitulos);
+    margin-bottom: 0;
+    font-family: var(--fuentePrincipal);
+}
+
+.titulo2{
+    padding-top:4rem;
+    font-size: 1.75rem;
+    text-align: center;
+    color: var(--colorSubTitulos);
+    margin-bottom: 0;
+    font-family: var(--fuentePrincipal);
+}
+
+.texto{
+    font-size: var(--tamTexto);
+    margin: 2rem;
+    font-family: var(--fuentePrincipal);
+    text-align: justify;
+}
+
+.textoblanco{
+    font-size: var(--tamTexto);
+    margin: 2rem;
+    font-family: var(--fuentePrincipal);
+    color: var(--blanco);
+    text-align: justify;
+}
+
+.imagenes {
+    width: 200px;
+    height: 200px;
+    padding-left: 1rem;
+}
+
+.img_landing{
+    width: 100%;
+    height: 700px;
+}
+
+
+.flecha_bajar{
+    position: relative;
+    top: -5rem;
+    max-width: 5rem;
+    animation: flecha-bajar-animacion 2s ease-in-out infinite;
+    justify-content: center;
+}
+
+
+.centrar_flecha {
+    flex: 1 1 auto;
+    display: flex;
+   justify-content: center;
+    margin-top: 20%;
+}
+
+.tituloLanding{
+    position: relative;
+    color: var(--blanco);
+    font-size: 9.5rem;
+    text-align: center;
+    font-family: var(--fuentePrincipal);
+    margin-top: 3rem;
+    text-shadow: 6px 8px 3px #0278AE, 2px 2px 1px #ccc
+}
+
+.CTA{
+    font-size: 2.5rem;
+    margin: 2rem;
+    font-family: "Georgia Pro Cond bold";
+    text-shadow: 6px 6px 3px #0278AE, 2px 2px 1px #ccc
+}
+
+/*Animacion*/
+
+@keyframes flecha-bajar-animacion {
+    from{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(10px);
+    }
+    to{
+        transform: translateY(0);
+    }
+}
+.titulo_peque{
+    text-align: center;
+    color: var(--colorTitulos);
+    padding-top: 2rem;
+    margin-bottom: 0;
+    font-family: var(--fuentePrincipal);
+}
+
+.ajustarTerminos {
+    display: block;
+    width: 80%;
+    margin: 1rem auto;
+    padding: 0 .5rem;
+    flex: 1 1 0;
+    align-items: center;
+}
+
+.ajustar{
+    display: flex;
+    margin: auto 3rem;
+}
+
+
+
+
+.texto-encabezado{
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 8rem;
+}
+
+.texto-encabezado .display-4 {
+    margin-top: 3rem;
+}
+
+.display-4 {
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.bienvenidos {
+    background: url("../img/planeta-tierra.jpg") no-repeat center top;
+    background-size: cover;
+    color: var(--blanco);
+    height: 100vh; /*Para hacer que ocupe toda la pantalla*/
+    display: flex;
+    flex-direction: column;
+}
+
+.PortadaGira{
+    background-color: var(--colorSubTitulos);
+    height: 21rem;
+    position: relative;
+    transform: var(--GirarPortada);
+    margin-top: 6rem;
+}
+
+.NoGira{
+    transform: var(--GiraNo);
+    position: absolute;
+    font-family: var(--fuentePrincipal);
+}
+
+.textoUNO{
+    font-size: var(--tamTexto);
+    font-family: var(--fuentePrincipal);
+    text-align: justify;
+    padding: 1rem 4rem;
+    color: white;
+}
+
+.textodos{
+    font-size: var(--tamTexto);
+    font-family: var(--fuentePrincipal);
+    text-align: justify;
+    padding: 1rem 4rem;
+    color: black;
+    object-fit: cover;
+}
+
+.slider_section{
+    background: var(--colorTransparente);
+    border-radius: 30px;
+    width: 100%;
+    margin: auto auto;
+    margin-top: 2rem;
+    flex: 1 1 0;
+    height: 20rem;
+}
+
+
+.TituloTarjeta{
+    text-align: center;
+    font-size: var(--tamTexto);
+    font-family: var(--fuentePrincipal);
+    padding-top: 2rem;
+    object-fit: cover;
+}
+
+.container-slider{
+    border-radius: 30px;
+    width: 85%;
+    height: 20rem;
+    overflow: hidden;
+    position: relative;
+    margin: auto;
+}
+
+.slider{
+    display: flex;
+    width: 400%;
+    margin-left: -100%;
+}
+
+.slider_btn{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.7);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    font-family: monospace;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.slider_btn:hover{
+    background: #ffffff;
+}
+
+.slider_btn-right{
+    right: 10px;
+}
+
+.slider_btn-left{
+    left: 10px;
+}

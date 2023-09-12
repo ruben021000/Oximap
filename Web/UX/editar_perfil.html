@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="src/app/css/editar_perfil.css">
+        <link rel="stylesheet" type="text/css" href="src/app/css/menu.css">
+        <title>EDITAR PERFIL</title>
+
+        <!-- CSS only
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        
+       JavaScript Bundle with Popper
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+       Importando la logica fake en html para darle funcionalidad a los botones
+
+        <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" /> -->
+        </head>
+
+
+    <body>
+
+    <!--------------------------------- ENCABEZADO ------------------------------------->
+    <header>
+        <section class="wrapper">
+            <nav>
+                <li><a href="./usuario.html"><img src="./src/app/img/logo_con_nombre.png" class="logo"></a></li>
+                <li><a href="./index.html"><img src="./src/app/img/cerrar-sesionblanco.png" class="loginuser"></a></li>
+            </nav>
+        </section>
+
+    </header>
+    <!---------------------------------------------------------------------------------->
+
+    <!------------------------------------ Editar Perfil ------------------------------->
+    <div class="decoracion">
+    <div class="contenedor">
+        <div class="TxtPerfil">
+            <h2 class="titulo">EDITA TU PERFIL</h2>
+        </div>
+        <br>
+        <div class="border">
+
+            <br>
+            <br>
+
+            <div class="profile-img">
+                <img src="src/app/img/usuario.png" id="imgUsuario" alt="" />
+                <div class="file btn btn-lg btn-primary">
+                    Cambiar foto
+                    <input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg" name="file" />
+                </div>
+            </div>
+
+        </div>
+        <h4 class="camposPerfil" >Ingrese tu nuevo nombre:</h4>
+        <h4 id="nombreUsuarioTxt" class="texto">
+        </h4>
+        <input id="cambiarNombreTXT" class="escribir"></input>
+        <br>
+        <h4 class="camposPerfil" >Ingrese tu nuevo correo:</h4>
+        <h4 id="correoUsuarioTxt" class="texto">
+        </h4>
+        <input id="cambiarCorreoTXT" class="escribir"> </input>
+        <br>
+        <br>
+        <br>
+        <a id="resetContra" class="textot">¿Has olvidado la contraseña? ¿Quieres cambiarla?</a>
+        <br>
+        <br>
+        <button id="editarPerfilBoton" class="btneditar">GUARDAR CAMBIOS</button>
+
+
+        <dialog id="modal1" class="modal">
+            <p class="texto_negro">Revise el correo para restablecer su contraseña.</p>
+            <button class="btn_cerrar" id="btn_cerrar">Cerrar</button>
+        </dialog>
+        <dialog id="modal2" class="modal">
+            <p class="texto_negro">La información ha sido guardada correctamente.</p>
+            <button class="btn_cerrar" id="btn_cerrar2">Cerrar</button>
+        </dialog>
+
+    </div>
+    </div>
+    <!---------------------------------------------------------------------------------->
+
+    <!--------------------------------- FOOTER ----------------------------------------->
+    <footer id="foter">
+        <div class="contenedorFooter">
+            <span class="copyright">OXIMAP © 2022</span>
+        </div>
+
+    </footer>
+    <!---------------------------------------------------------------------------------->
+
+
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+            import { getAuth, onAuthStateChanged, sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
+            import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js";
+
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyBBGGWQJI519Xm8VM8Ocn0P9RSxdSK-s5I",
+                authDomain: "oximapg4-login.firebaseapp.com",
+                projectId: "oximapg4-login",
+                //storageBucket: "oximapg4-login.appspot.com",
+                messagingSenderId: "905799197481",
+                appId: "1:905799197481:web:e136730907ae07b3b90d38",
+                measurementId: "G-KCP6LXPCH5",
+                storageBucket:"gs://oximapg4-login.appspot.com"
+            };
+
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            // Initialize Firebase Authentication and get a reference to the service
+            const auth = getAuth(app);
+
+            import firebaseutil from "./js/firebase_util.js"
+
+            
+            // Initialize Cloud Storage and get a reference to the service
+            const storage = getStorage(app);
+
+            document.onreadystatechange = function() {
+                let util = new firebaseutil()
+                const auth = getAuth();
+                // Create a root reference
+                const storage = getStorage();
+
+                // Create a reference to 'Imagenes/'
+                
+                let imagesRef = ref(storage, 'Imagenes/');
+                let imagen = "";
+                let id_usuario;
+                const image = document.getElementById('imgUsuario');
+                let url = ""
+                if(document.readyState == "complete")
+                {
+                    onAuthStateChanged(auth, async (user) => {
+                
+                    if (user) {
+                        // User is signed in, see docs for a list of available properties
+                        // https://firebase.google.com/docs/reference/js/firebase.User
+                        
+                        imagesRef = ref(storage, 'Imagenes/' + user.uid);  
+                        id_usuario = user.uid 
+                        await util.mostrar_info_usuario(user) 
+                        util.mostrar_imagen_usuario(imagesRef)
+
+                    } else {
+                        // User is signed out
+                        // ...
+                    }
+                    });
+                    
+                    document.getElementById("editarPerfilBoton").addEventListener("click" , async function(){
+                        
+                        if(imagen === "")
+                        {
+                            util.editar_perfil(url)
+                            modal2.showModal();
+                        }
+                        else{
+                            const imagesRef = ref(storage, 'Imagenes/' + id_usuario);
+                            console.log(id_usuario)
+                            uploadBytes(imagesRef, imagen).then((snapshot) => {
+                                console.log('Uploaded a blob or file!');
+                            });
+                            modal2.showModal();
+                        }
+
+
+                    })
+                    
+                    document.getElementById("image-input").addEventListener("input", function() {
+                       
+                        
+                        const reader = new FileReader();
+                        reader.addEventListener("load", () => {
+                            const uploaded_image = reader.result;
+                            document.getElementById("imgUsuario").src = uploaded_image;
+                            
+                        });
+                        reader.readAsDataURL(this.files[0]);
+                        imagen = this.files[0]
+                        
+                    });
+
+                    document.getElementById("resetContra").addEventListener("click", async function(){
+                        sendPasswordResetEmail(auth, auth.currentUser.email)
+                        .then(() => {
+                            // Password reset email sent!
+                            // ..
+                        })
+                        modal1.showModal();
+                    })
+
+                    btn_cerrar.addEventListener("click", ()=>
+                    {
+                        modal1.close();
+                    })
+
+                    btn_cerrar2.addEventListener("click", ()=>
+                    {
+                        modal2.close();
+                        window.location.replace("./perfil.html");
+                    })
+                }
+                
+            } 
+        </script>   
+    </body>
+
+
+</html>
